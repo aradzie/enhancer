@@ -23,15 +23,13 @@ export function Adjustments({ settings, geometry, preset, onAdjust, onPreset, on
   const histogramMax = bins ? Math.max(...bins) : 1;
   const histogramPath = bins ? `M0,44 ${Array.from(bins, (n, i) => `L${i},${44 - 42 * Math.log1p(n) / Math.log1p(histogramMax || 1)}`).join(' ')} L255,44Z` : '';
   return <aside className="adjustments" aria-label="Document adjustments">
-    <div className="sidebar-heading"><div><span className="eyebrow">MAKE IT PRINT-READY</span><h1>A little more clarity.</h1></div><Icon name="sliders" size={21} /></div>
+    <div className="sidebar-heading"><h1>Adjustments</h1></div>
     <section className="sidebar-section preset-section">
-      <div className="section-heading"><h2>Start with a preset</h2><span className="muted-label">ONE CLICK</span></div>
+      <div className="section-heading"><h2>Presets</h2></div>
       <div className="presets">{PRESETS.map(item => <button className={`preset ${preset === item.id ? 'active' : ''}`} key={item.id} onClick={() => onPreset(item.id)} disabled={disabled} aria-pressed={preset === item.id}>
-        <span className={`preset-icon ${item.id}`}><Icon name={item.icon} size={20} /></span>
         <span><strong>{item.name}</strong><small>{item.description}</small></span>
         <span className="preset-radio">{preset === item.id && <Icon name="check" size={11} />}</span>
       </button>)}</div>
-      <p className="section-note">A starting point. Every setting is yours to adjust.</p>
     </section>
     <section className="sidebar-section">
       <div className="section-heading"><h2>Fine-tune</h2><button className="text-button" onClick={onReset} disabled={disabled}>Reset all</button></div>
@@ -39,7 +37,7 @@ export function Adjustments({ settings, geometry, preset, onAdjust, onPreset, on
       {slider('brightness', 'Brightness', -100, 100, 'Add an intensity offset of brightness × 2.55. Zero leaves brightness unchanged.')}
       {slider('contrast', 'Contrast', -100, 100, 'Stretch intensities around middle gray. Zero is neutral; negative values reduce contrast.')}
       <div className="levels-label"><span>Levels</span><span>SHADOWS → HIGHLIGHTS</span></div>
-      <svg className="histogram" viewBox="0 0 255 46" preserveAspectRatio="none" role="img" aria-label="Output luminance histogram"><defs><linearGradient id="histogram-fill"><stop stopColor="#809287"/><stop offset="1" stopColor="#bbc9bf"/></linearGradient></defs><path d={histogramPath} fill="url(#histogram-fill)"/><line x1="0" y1="45" x2="255" y2="45" stroke="#d8dcd7"/></svg>
+      <svg className="histogram" viewBox="0 0 255 46" preserveAspectRatio="none" role="img" aria-label="Output luminance histogram"><defs><linearGradient id="histogram-fill"><stop stopColor="#888888"/><stop offset="1" stopColor="#cccccc"/></linearGradient></defs><path d={histogramPath} fill="url(#histogram-fill)"/><line x1="0" y1="45" x2="255" y2="45" stroke="#dddddd"/></svg>
       <div className="level-gradient" />
       {slider('blackPoint', 'Black point', 0, settings.whitePoint - 1, 'Input values at or below this point map to black; it must stay below white point.')}
       {slider('whitePoint', 'White point', settings.blackPoint + 1, 255, 'Input values at or above this point map to white; it must stay above black point.')}
@@ -75,6 +73,5 @@ export function Adjustments({ settings, geometry, preset, onAdjust, onPreset, on
         <button className="text-button" disabled={disabled} onClick={() => { setCrop({ left: 0, top: 0, right: 0, bottom: 0 }); onGeometry(structuredClone(DEFAULT_GEOMETRY)); }}>Reset geometry</button></div>
       {(crop.left + crop.right >= 99.9 || crop.top + crop.bottom >= 99.9) && <p className="inline-error">Keep at least 0.1% of each dimension.</p>}
     </details>
-    <div className="sidebar-footnote"><Icon name="shield" size={17} /><span>Your files stay with you.<br/><strong>Everything happens in your browser.</strong></span></div>
   </aside>;
 }

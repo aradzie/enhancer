@@ -14,7 +14,7 @@ async function fixture(page: Page, width = 2400, height = 1800, mime = 'image/pn
   return Buffer.from(base64, 'base64');
 }
 async function ready(page: Page) {
-  await expect(page.getByRole('status').filter({ hasText: 'Ready when you are' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: /^Ready$/ })).toBeVisible();
 }
 async function openFixture(page: Page, width = 2400, height = 1800) {
   const buffer = await fixture(page, width, height);

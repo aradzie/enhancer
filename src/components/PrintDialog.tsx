@@ -6,7 +6,7 @@ import { Icon } from './Icon';
 
 export function PrintDialog({ settings, onChange, onClose, onPrint, busy }: { settings: PrintSettings; onChange: (settings: PrintSettings) => void; onClose: () => void; onPrint: () => void; busy: boolean }) {
   const layout = printLayout(settings);
-  return <Modal title="Ready for paper." onClose={onClose}>
+  return <Modal title="Print settings" onClose={onClose}>
     <p className="modal-intro">Print your enhanced document at full resolution.</p>
     <div className="print-options">
       <label>Paper size<select disabled={busy} value={settings.paper} onChange={e => onChange({ ...settings, paper: e.target.value as PrintSettings['paper'] })}><option>A4</option><option>Letter</option></select></label>

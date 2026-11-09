@@ -47,13 +47,13 @@ export function sampleDocument(): DocumentImage {
   const canvas = document.createElement('canvas'); canvas.width = 1240; canvas.height = 1754;
   const ctx = canvas.getContext('2d', { willReadFrequently: true });
   if (!ctx) throw new Error('Canvas is not available in this browser.');
-  ctx.fillStyle = '#e1ded1'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#55564f'; ctx.font = '19px sans-serif';
+  ctx.fillStyle = '#dddddd'; ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#555555'; ctx.font = '19px sans-serif';
   ctx.fillText('FIELDNOTES', 125, 135); ctx.textAlign = 'right'; ctx.fillText('RESEARCH SERIES  /  024', 1115, 135); ctx.textAlign = 'left';
-  ctx.strokeStyle = '#85847a'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(125, 170); ctx.lineTo(1115, 170); ctx.stroke();
-  ctx.fillStyle = '#42433d'; ctx.font = '66px Georgia, serif'; ctx.fillText('Small observations.', 125, 298); ctx.fillText('Clearer thinking.', 125, 378);
-  ctx.fillStyle = '#73736b'; ctx.font = '22px sans-serif'; ctx.fillText('Notes on the everyday things that make a difference.', 127, 444);
-  ctx.font = 'bold 18px sans-serif'; ctx.fillStyle = '#55564f'; ctx.fillText('01   THE VALUE OF A FRESH PERSPECTIVE', 125, 562);
+  ctx.strokeStyle = '#888888'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(125, 170); ctx.lineTo(1115, 170); ctx.stroke();
+  ctx.fillStyle = '#444444'; ctx.font = '66px Georgia, serif'; ctx.fillText('Small observations.', 125, 298); ctx.fillText('Clearer thinking.', 125, 378);
+  ctx.fillStyle = '#777777'; ctx.font = '22px sans-serif'; ctx.fillText('Notes on the everyday things that make a difference.', 127, 444);
+  ctx.font = 'bold 18px sans-serif'; ctx.fillStyle = '#555555'; ctx.fillText('01   THE VALUE OF A FRESH PERSPECTIVE', 125, 562);
   ctx.font = '25px Georgia, serif';
   const lines = [
     'A good idea often begins with a small observation. A detail',
@@ -65,19 +65,19 @@ export function sampleDocument(): DocumentImage {
     'keep the essentials, and let the important things stand out.',
   ];
   lines.forEach((line, i) => ctx.fillText(line, 125, 620 + i * 43));
-  ctx.strokeStyle = '#8c8b80'; ctx.beginPath(); ctx.moveTo(125, 976); ctx.lineTo(1115, 976); ctx.stroke();
+  ctx.strokeStyle = '#888888'; ctx.beginPath(); ctx.moveTo(125, 976); ctx.lineTo(1115, 976); ctx.stroke();
   ctx.font = 'bold 18px sans-serif'; ctx.fillText('02   A SIMPLE PROCESS', 125, 1040);
   const boxes = [{ x: 130, label: 'Observe', n: '01' }, { x: 480, label: 'Refine', n: '02' }, { x: 830, label: 'Make', n: '03' }];
   boxes.forEach(({ x, label, n }) => {
-    ctx.strokeStyle = '#8b8b80'; ctx.lineWidth = 1.5; ctx.strokeRect(x, 1090, 270, 170);
-    ctx.font = '18px sans-serif'; ctx.fillStyle = '#8b8b80'; ctx.fillText(n, x + 28, 1130);
-    ctx.font = '32px Georgia, serif'; ctx.fillStyle = '#57584e'; ctx.fillText(label, x + 28, 1215);
+    ctx.strokeStyle = '#888888'; ctx.lineWidth = 1.5; ctx.strokeRect(x, 1090, 270, 170);
+    ctx.font = '18px sans-serif'; ctx.fillStyle = '#888888'; ctx.fillText(n, x + 28, 1130);
+    ctx.font = '32px Georgia, serif'; ctx.fillStyle = '#555555'; ctx.fillText(label, x + 28, 1215);
   });
-  ctx.font = '27px sans-serif'; ctx.fillStyle = '#8b8b80'; ctx.fillText('→', 428, 1185); ctx.fillText('→', 778, 1185);
-  ctx.font = 'italic 25px Georgia, serif'; ctx.fillStyle = '#929184'; ctx.fillText('“Keep what matters. Make it a little clearer.”', 125, 1385);
-  ctx.strokeStyle = '#929184'; ctx.lineWidth = 0.75; ctx.beginPath(); ctx.moveTo(125, 1530); ctx.lineTo(1115, 1530); ctx.stroke();
+  ctx.font = '27px sans-serif'; ctx.fillStyle = '#888888'; ctx.fillText('→', 428, 1185); ctx.fillText('→', 778, 1185);
+  ctx.font = 'italic 25px Georgia, serif'; ctx.fillStyle = '#888888'; ctx.fillText('“Keep what matters. Make it a little clearer.”', 125, 1385);
+  ctx.strokeStyle = '#888888'; ctx.lineWidth = 0.75; ctx.beginPath(); ctx.moveTo(125, 1530); ctx.lineTo(1115, 1530); ctx.stroke();
   ctx.font = '17px sans-serif'; ctx.fillText('A WORKING DOCUMENT · NOVEMBER 2026', 125, 1580); ctx.textAlign = 'right'; ctx.fillText('01 / 01', 1115, 1580);
-  const shadow = ctx.createLinearGradient(0, 0, 1240, 700); shadow.addColorStop(0, 'rgba(45,39,24,.30)'); shadow.addColorStop(0.6, 'rgba(45,39,24,.02)'); shadow.addColorStop(1, 'rgba(45,39,24,0)');
+  const shadow = ctx.createLinearGradient(0, 0, 1240, 700); shadow.addColorStop(0, 'rgba(40,40,40,.30)'); shadow.addColorStop(0.6, 'rgba(40,40,40,.02)'); shadow.addColorStop(1, 'rgba(40,40,40,0)');
   ctx.fillStyle = shadow; ctx.fillRect(0, 0, 1240, 1754);
   return { name: 'fieldnotes-scan.png', sample: true, image: { width: canvas.width, height: canvas.height, data: ctx.getImageData(0, 0, canvas.width, canvas.height).data } };
 }

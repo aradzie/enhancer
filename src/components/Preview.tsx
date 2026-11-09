@@ -58,15 +58,14 @@ export function Preview({ image, original, width, height, comparing, processing,
         <div className="paper" style={{ width: width * actualZoom, height: height * actualZoom, transform: `translate(calc(-50% + ${pan.x}px), calc(-50% + ${pan.y}px))` }}>
           <canvas ref={afterCanvas} aria-label="Enhanced document" style={{ visibility: displayMode === 'original' ? 'hidden' : 'visible' }} />
           <canvas ref={beforeCanvas} aria-label="Original document" className="original-canvas" style={{ visibility: displayMode === 'enhanced' ? 'hidden' : 'visible', clipPath: displayMode === 'split' ? `inset(0 ${100 - split}% 0 0)` : 'none' }} />
-          <span className="paper-badge">{displayMode === 'original' ? 'ORIGINAL' : displayMode === 'split' ? 'BEFORE' : 'ENHANCED'}</span>
           {displayMode === 'split' && <>
+            <span className="paper-badge">BEFORE</span>
             <span className="paper-badge after-badge">AFTER</span>
             <div className="comparison-line" style={{ left: `${split}%` }}><span><Icon name="compare" size={16} /></span></div>
             <input type="range" className="comparison-range" min="0" max="100" value={split} onChange={e => setSplit(Number(e.target.value))} aria-label="Comparison split" title="Drag to compare" />
           </>}
         </div>
-        <span className="preview-caption">{displayMode === 'original' ? 'Your original, untouched.' : 'A clearer page. The same document.'}</span>
-      </> : <div className="empty-state"><span className="empty-icon"><Icon name="document" size={36} /></span><h2>A clearer page starts here.</h2><p>Drop a scan or document photo into your workspace.</p><button className="button primary" onClick={onOpen}><Icon name="folder" />Open a document</button><span>JPEG, PNG or WebP · or paste an image</span></div>}
+      </> : <div className="empty-state"><h2>Open an image</h2><p>Drop a scan or document photo into your workspace.</p><button className="button primary" onClick={onOpen}><Icon name="folder" />Open a document</button><span>JPEG, PNG or WebP · or paste an image</span></div>}
       {processing && <div className="processing-pill" role="status"><span className="spinner" />Updating preview</div>}
       <div className="zoom-toolbar" aria-label="Zoom controls">
         <button onClick={() => changeZoom(Math.max(0.05, actualZoom / 1.25))} aria-label="Zoom out" title="Zoom out"><Icon name="minus" size={16} /></button>
